@@ -1,36 +1,34 @@
 function generateMarkdown(data, githubInfo) {
   return `
 # **${data.title}**
-${data.badge}
-## Description 
+
+## Description
+
 ${data.description}
-## Table of contents
-- [Description](#Description)
-- [Usage](#Usage)
-- [Licence](#Licence)
-- [Contributors](#Contributors)
-- [Installation](#Installation)
-- [Test](#Test)
-- [Repository Link](#Repository)
-- [GitHub Info](#GitHub) 
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage) (#License)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
 ## Installation
-        ${data.installation}
+To install necessary dependencies, run the following command:
+\`\`\`
+${data.installation}
+\`\`\`
 ## Usage
-${data.usage}
-## Licence
-${data.licence}
-## Contributors
+${data.usage} 
+## License
+${data.license}
+## Contributing
 ${data.contributing}
-## Test
-${data.test}
-## Repository
-- [Project Repo](${data.repo})
-## GitHub
-![Image of me](${githubInfo.githubImage})
-- ${githubInfo.name}
-- [GitHub Profile](${githubInfo.profile})
-- <${githubInfo.email}>
-`;
+## Tests
+To run tests, run the following command:
+\`\`\`
+${data.tests}
+\`\`\`
+## Questions
+You can find more of my work at [${data.username}](https://github.com/${data.username}/).`;
 }
 
 module.exports = generateMarkdown;

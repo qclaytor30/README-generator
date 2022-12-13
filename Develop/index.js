@@ -1,8 +1,9 @@
 
 // TODO: Include packages needed for this application
-const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkdown = require('./utils/generateMarkdown');
+const inquirer = require('inquirer');
+const generate = require('./utils/generateMarkdown');
+const axios = require ("axios");
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -15,11 +16,6 @@ const questions = [
         type: "input",
         name: "description",
         message: "Please type your project's description"
-    },
-    {
-        type: "input",
-        name: "table",
-        message: "Please type your project's Table of Contents"
     },
     {
         type: "input",
@@ -71,7 +67,6 @@ inquirer
                 profile: res.data.html_url,
                 name: res.data.name
             };
-
             fs.writeFile("README.md", generate(data, githubInfo), function (err) {
                 if (err) {
                     throw err;
@@ -82,7 +77,6 @@ inquirer
         });
 
     });
-
 function init() {
 }
 init();
