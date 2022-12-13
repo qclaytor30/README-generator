@@ -1,31 +1,30 @@
 
 // TODO: Include packages needed for this application
-const fs = require('fs');
 const inquirer = require('inquirer');
+const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown');
-
 
 // TODO: Create an array of questions for user input
 const questions = [
     {
         type: "input",
         name: "title",
-        message: "What is your project title?"
+        message: "What is the name of your project?"
     },
     {
         type: "input",
         name: "description",
-        message: "Please provide your project's description"
+        message: "Please type your project's description"
     },
     {
         type: "input",
         name: "table",
-        message: "Please provide your project's Table of Contents"
+        message: "Please type your project's Table of Contents"
     },
     {
         type: "input",
         name: "installation",
-        message: "Please provide the installation instructions"
+        message: "Please type the installation instructions"
     },
     {
         type: "input",
@@ -35,7 +34,7 @@ const questions = [
     {
         type: "input",
         name: "licence",
-        message: "Please provide the project licence"
+        message: "Please write the project licence"
     },
     {
         type: "input",
@@ -55,15 +54,16 @@ const questions = [
     {
         type: "input",
         name: "repo",
-        message: "What is your repo link?"
+        message: "What is your repository link?"
     }
 ];
 
-prompt(questions)
+inquirer
+    .prompt(questions)
     .then(function (data) {
         const queryUrl = `https://api.github.com/users/${data.username}`;
 
-        get(queryUrl).then(function (res) {
+        axios.get(queryUrl).then(function (res) {
 
             const githubInfo = {
                 githubImage: res.data.avatar_url,
@@ -72,25 +72,17 @@ prompt(questions)
                 name: res.data.name
             };
 
-            var fileName = data.title.toLowerCase().split(' ').join('') + ".md";
-
-            _writeToFile(fileName, generate(data, githubInfo), function (err) {
+            fs.writeFile("README.md", generate(data, githubInfo), function (err) {
                 if (err) {
                     throw err;
                 };
-                console.log("New README was successfully created!");
+
+                console.log("New README file created with success!");
             });
         });
 
     });
 
-console.log(questions);
-
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) { }
-
-// TODO: Create a function to initialize app
-function init() { }
-
-// Function call to initialize app
+function init() {
+}
 init();
