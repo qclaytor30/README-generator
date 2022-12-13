@@ -7,7 +7,7 @@ function generateMarkdown(data, githubInfo) {
 ${data.description}
 ## Table of Contents
 * [Installation](#installation)
-* [Usage](#usage) (#License)
+* [Usage](#usage) 
 * [Contributing](#contributing)
 * [Tests](#tests)
 * [Questions](#questions)
@@ -17,15 +17,17 @@ To install necessary dependencies, run the following command:
 ${data.installation}
 \`\`\`
 ## Usage
+\`\`\`
 ${data.usage} 
+\`\`\`
 ## License
-${data.license}
+${data.licence}
 ## Contributing
 ${data.contributing}
 ## Tests
 To run tests, run the following command:
 \`\`\`
-${data.tests}
+${data.test}
 \`\`\`
 ## Questions
 You can find more of my work at [${data.username}](https://github.com/${data.username}/).`;
